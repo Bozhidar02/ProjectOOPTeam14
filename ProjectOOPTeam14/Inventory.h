@@ -18,4 +18,9 @@ public:
 	~Inventory();
 
 	Item* FindItem(const MyString::String& name);
+
+	bool AddItem(const Item* item);
+	bool RemoveItem(const int index);
+
+	Item* DropRandom();
 };
