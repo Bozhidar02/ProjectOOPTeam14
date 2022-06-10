@@ -5,6 +5,6 @@
 class Weapon: public Item{
 	double damage;
 public:
-	virtual void attack() = 0;
+	virtual double use() override;
 	virtual Weapon* clone() = 0;
 };

@@ -9,4 +9,6 @@ protected:
 public:
 	Item(MyString::String name, const double maxdurability = 0, const double durability = 0);
 	Item(const Item& other);
+
+	virtual double use() = 0;
 };
