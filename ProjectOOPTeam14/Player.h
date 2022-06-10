@@ -21,7 +21,7 @@ private:
 	
 	Inventory inventory;
 
-	void copy();
+	void copy(const Player& other);
 	void free();
 
 protected:
@@ -33,7 +33,8 @@ protected:
 		UNKNOWN
 	} type;
 public:
-	Player(MyString::String& username, MyString::String& password);
+	Player(MyString::String& username, MyString::String& password, float health);
+	Player(MyString::String& username, MyString::String& password, float health, unsigned int level, int xp, int max_xp);
 	Player(const Player& other);
 	Player& operator=(const Player& other);
 	~Player();
