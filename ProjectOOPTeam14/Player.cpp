@@ -26,7 +26,7 @@ void Player::free()
 	delete[] armor;
 }
 
-Player::Player(MyString::String& username, MyString::String& password, float health)
+Player::Player(MyString::String& username, MyString::String& password, double health)
 {
 	this->username = username;
 	this->password = password;
@@ -41,7 +41,8 @@ Player::Player(MyString::String& username, MyString::String& password, float hea
 	armor = new Armor * [ARMOR_SLOTS];
 }
 
-Player::Player(MyString::String& username, MyString::String& password, float health, unsigned int level, int xp, int max_xp)
+Player::Player(MyString::String& username, MyString::String& password, 
+	double health, unsigned int level, unsigned int xp, unsigned int max_xp)
 {
 	this->username = username;
 	this->password = password;
@@ -68,6 +69,7 @@ Player& Player::operator=(const Player& other)
 		free();
 		copy(other);
 	}
+	return *this;
 }
 
 Player::~Player()
@@ -90,20 +92,22 @@ unsigned int Player::GetLevel() const
 	return level;
 }
 
-float Player::GetHealth() const
+double Player::GetHealth() const
 {
 	return health;
 }
 
-void Player::AddXP(const float xp)
+double Player::GetDefence() const
 {
-	this->xp += xp;
-	if (xp >= max_xp)
+	double defence = 0;
+	for (int i = 0; i < ARMOR_SLOTS; i++)
 	{
-		max_xp *= 2;
-		level++;
-		health += 10;
+		if (armor[i] != nullptr)
+		{
+			defence += armor[i]->use();
+		}
 	}
+	return defence;
 }
 
 bool Player::PickWeapon(const MyString::String& weaponName)
@@ -142,4 +146,22 @@ bool Player::SetArmorSlot(const MyString::String& armorName, const int slot)
 	}
 
 	return true;
+}
+
+bool Player::Attack(Player& other)
+{
+	if (other.GetHealth() + other.GetDefence() >= this->GetPower())
+	{
+		this->AddXP(other.GetLevel() * 2);
+		Item* loot = other.inventory.DropRandom();
+		this->inventory.AddItem(loot);
+		return true;
+	}
+	else
+	{
+		other.AddXP(level * 2);
+		Item* loot = inventory.DropRandom();
+		other.inventory.AddItem(loot);
+		return false;
+	}
 }

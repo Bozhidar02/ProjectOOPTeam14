@@ -3,18 +3,18 @@
 #include "String.h"
 
 const int ARMOR_SLOTS = 3;
-const float LVL_ONE_XP = 100;
+const int LVL_ONE_XP = 100;
 
 class Player
 {
-private:
+protected:
 	MyString::String username;
 	MyString::String password;
 
-	float xp;
-	float max_xp;
+	unsigned int xp;
+	unsigned int max_xp;
 	unsigned int level;
-	float health;
+	double health;
 
 	Weapon* weapon;
 	Armor** armor;
@@ -24,7 +24,6 @@ private:
 	void copy(const Player& other);
 	void free();
 
-protected:
 	enum Type
 	{
 		WARRIOR,
@@ -33,23 +32,27 @@ protected:
 		UNKNOWN
 	} type;
 public:
-	Player(MyString::String& username, MyString::String& password, float health);
-	Player(MyString::String& username, MyString::String& password, float health, unsigned int level, int xp, int max_xp);
+	Player(MyString::String& username, MyString::String& password, double health);
+	Player(MyString::String& username, MyString::String& password, double health, unsigned int level, unsigned int xp, unsigned int max_xp);
 	Player(const Player& other);
 	Player& operator=(const Player& other);
-	~Player();
+	virtual ~Player();
 
 	const MyString::String& GetName() const;
 	bool IsUser(const MyString::String& name, const MyString::String& pass) const;
 	unsigned int GetLevel() const;
-	float GetHealth() const;
+	double GetHealth() const;
+	double GetDefence() const;
 
-	void AddXP(const float xp);
+	virtual bool AddXP(const unsigned int xp) = 0;
 
 	bool PickWeapon(const MyString::String& weaponName);
 	bool SetArmorSlot(const MyString::String& armorName, const int slot);
 
-	virtual bool Attack(const Player& other) = 0;
-	virtual bool TakeDamage(const Player& other) = 0;
+	virtual double GetPower() const = 0;
+
+	bool Attack(Player& other);
+
+	virtual Player* clone() const = 0;
 };
 
