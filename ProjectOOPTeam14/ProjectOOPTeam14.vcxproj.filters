@@ -13,33 +13,60 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Equipment">
+      <UniqueIdentifier>{a4fc1422-81fd-489d-9e80-ef97cad0a4f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Additional">
+      <UniqueIdentifier>{d4db3272-e6e7-4c9e-aba9-3d66a8ce801e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Additional">
+      <UniqueIdentifier>{c15c15e6-6c35-4fb4-a1a4-c250e129eeab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Equipment">
+      <UniqueIdentifier>{552e17dc-6859-4bd1-a188-192ccd5e866c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\PlayerClasses">
+      <UniqueIdentifier>{7f1050ab-8476-4e8d-adef-3fff0d52c618}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PlayerClasses">
+      <UniqueIdentifier>{be83b326-842e-4f7d-b748-e4aa89466e64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="String.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Additional</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Vector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="String.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Armor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Equipment</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
+      <Filter>Header Files\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="String.h">
+      <Filter>Header Files\Additional</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Header Files\Additional</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Header Files\Equipment</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
