@@ -110,6 +110,11 @@ double Player::GetDefence() const
 	return defence;
 }
 
+Inventory Player::GetInventory()
+{
+	return inventory;
+}
+
 bool Player::PickWeapon(const MyString::String& weaponName)
 {
 	Item* temp = inventory.FindItem(weaponName);

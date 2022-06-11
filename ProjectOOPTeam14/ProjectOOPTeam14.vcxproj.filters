@@ -31,6 +31,12 @@
     <Filter Include="Source Files\PlayerClasses">
       <UniqueIdentifier>{be83b326-842e-4f7d-b748-e4aa89466e64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Areana">
+      <UniqueIdentifier>{1456c37b-55c1-4d10-a5b2-57a55b36ed1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Areana">
+      <UniqueIdentifier>{8053e91c-4f9a-495f-bbe5-651a91c6224a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -53,6 +59,12 @@
     </ClCompile>
     <ClCompile Include="Mage.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Areana</Filter>
+    </ClCompile>
+    <ClCompile Include="Areana.cpp">
+      <Filter>Source Files\Areana</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="Mage.h">
       <Filter>Header Files\PlayerClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\Areana</Filter>
+    </ClInclude>
+    <ClInclude Include="Areana.h">
+      <Filter>Header Files\Areana</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

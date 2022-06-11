@@ -43,6 +43,7 @@ public:
 	unsigned int GetLevel() const;
 	double GetHealth() const;
 	double GetDefence() const;
+	Inventory GetInventory();
 
 	virtual bool AddXP(const unsigned int xp) = 0;
 
