@@ -9,6 +9,6 @@ private:
 public:
 	Sword(MyString::String);
 	Sword(const Sword&);
-	Weapon* clone() override;
+	Item* clone() const override;
 	bool upgrade() override;
 };

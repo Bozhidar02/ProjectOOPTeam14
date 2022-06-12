@@ -87,6 +87,12 @@
     <ClCompile Include="Boots.cpp">
       <Filter>Source Files\Equipment</Filter>
     </ClCompile>
+    <ClCompile Include="Mage.cpp">
+      <Filter>Source Files\PlayerClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Source Files\PlayerClasses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Armor.h">

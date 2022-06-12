@@ -2,10 +2,12 @@
 
 Weapon::Weapon(): Item(MyString::String("Undefined weapon"), 0, 0) {
 	damage = 0;
+	type = Type::WEAPON;
 }
 
 Weapon::Weapon(MyString::String name, double damage, double durability) : Item(name, durability, 1) {
 	this->damage = damage;
+	type = Type::WEAPON;
 }
 
 double Weapon::use() {

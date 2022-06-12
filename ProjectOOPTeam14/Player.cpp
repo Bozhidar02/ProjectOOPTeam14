@@ -7,11 +7,11 @@ void Player::copy(const Player& other)
 	xp = other.xp;
 	max_xp = other.max_xp;
 	health = other.health;
-	weapon = other.weapon->clone();
+	weapon = dynamic_cast<Weapon*>(other.weapon->clone());
 	armor = new Armor * [ARMOR_SLOTS];
 	for (int i = 0; i < ARMOR_SLOTS; i++)
 	{
-		armor[i] = other.armor[i]->clone();
+		armor[i] = dynamic_cast<Armor*>(other.armor[i]->clone());
 	}
 	inventory = other.inventory;
 }

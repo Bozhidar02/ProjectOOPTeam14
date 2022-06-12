@@ -19,7 +19,7 @@ public:
 
 	Item* FindItem(const MyString::String& name);
 
-	bool AddItem(const Item* item);
+	bool AddItem(Item* item);
 	bool RemoveItem(const int index);
 
 	Item* DropRandom();

@@ -2,10 +2,12 @@
 
 Armor::Armor(): Item(MyString::String("Undefined armor"), 0, 0) {
 	ap = 0;
+	type = Type::ARMOR;
 }
 
 Armor::Armor(MyString::String name, double ap, double durability) : Item(name, durability, 1) {
 	this->ap = ap;
+	type = Type::ARMOR;
 }
 
 double Armor::use() {
