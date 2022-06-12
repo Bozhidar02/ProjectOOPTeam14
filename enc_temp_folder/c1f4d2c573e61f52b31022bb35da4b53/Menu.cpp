@@ -4,7 +4,7 @@
 void menuoptions(){
 	std::cout << "What would you like to do? (press the index button to select)" << std::endl;
 	std::cout << "1. Play Quickmatch" << std::endl;
-	std::cout << "2. Tutorial" << std::endl;
+	std::cout << "2. Tutorial (maybe add?)" << std::endl;
 	std::cout << "3. Quit " << std::endl;
 }
 

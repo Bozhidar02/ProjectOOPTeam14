@@ -155,6 +155,7 @@ void Arena::quickmatch(){
 	player[0]->GetInventory()->display();
 	std::cout << "Select a weapon to equip" << std::endl;
 	MyString::String weapon = getStringfrominput();
+	std::cout << weapon<<std::endl;
 	player[0]->PickWeapon(weapon);
 	std::cout << "Would you like to equip armour? y/n" << std::endl;
 	char ans;

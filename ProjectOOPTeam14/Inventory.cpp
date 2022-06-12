@@ -94,8 +94,8 @@ bool Inventory::RemoveItem(const int index)
 	}
 	delete items[index];
 	items[index] = items[capacity - 1];
-	items[capacity--] = nullptr;
-	
+	items[capacity-1] = nullptr;
+	capacity--;
 	return true;
 }
 
