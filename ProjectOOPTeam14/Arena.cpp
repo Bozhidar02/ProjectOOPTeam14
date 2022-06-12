@@ -133,23 +133,25 @@ void Arena::createchar(){
 void Arena::quickmatch(){
 	printallchars();
 	std::cout << "Choose a character or create a new one. To create new character select -1."<<std::endl;
-	size_t selection;
+	int selection;
 	std::cin >> selection;
-	selection++;
-	bool selecmade = false;
+	bool selecmade = true;
 	if (selection == -1) {
 		createchar();
-		this->player[0] = chars[size];//create charc
+		this->player[0] = chars[size];//create char
+		selecmade = false;
 	}
-	while (true) {
-		for (int i = 0; i < size; i++) {
-			if (i == selection) {
-			
-			}
+	while (selection >= size || selection < 0) {
+		std::cout << "Such a charcracter does not exist";
+		std::cin >> selection;
+	}
+	for (int i = 0; i < size; i++) {
+		if (i == selection) {
 			this->player[0] = chars[i];
+			chars[i]->GetInventory()->display();
+			break;
+
 		}
-		std::cout << "No such command. Enter another index of existing character" << std::endl;
-		std::cin >>selection;
 	}
 	player[0]->GetInventory()->display();
 	std::cout << "Select a weapon to equip" << std::endl;
@@ -157,14 +159,14 @@ void Arena::quickmatch(){
 	player[0]->PickWeapon(weapon);
 	std::cout << "Would you like to equip armour? y/n" << std::endl;
 	char ans;
-	
+	std::cin >> ans;
 	while (ans == 'y') {
 		std::cout << "Select armor slot to equip: 0>head, 1>torso, 2>legs" << std::endl;
 		size_t as;
 		std::cin >> as;
 		MyString::String name = getStringfrominput();
 		player[0]->SetArmorSlot(name, as);
-		std::cout << "Would you like to equip another pice of armor?" << std::endl;
+		std::cout << "Would you like to equip another pice of armor? y/n" << std::endl;
 		std::cin >> ans;
 	}
 	int opp = rand() % size;
