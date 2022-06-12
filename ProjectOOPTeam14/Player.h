@@ -21,7 +21,7 @@ protected:
 	Weapon* weapon;
 	Armor** armor;
 	
-	Inventory inventory;
+	Inventory* inventory;
 
 	void copy(const Player& other);
 	void free();
@@ -45,7 +45,7 @@ public:
 	unsigned int GetLevel() const;
 	double GetHealth() const;
 	double GetDefence() const;
-	Inventory GetInventory();
+	Inventory* GetInventory();
 	const char* getType();
 
 	virtual bool AddXP(const unsigned int xp) = 0;

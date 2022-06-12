@@ -22,9 +22,9 @@ class Arena {
 public:
 	Arena();
 	~Arena();
-	void addPlayerArcher(Archer newchar);
-	void addPlayerMage(Mage newchar);
-	void addPlayerWarrior(Warrior newchar);
+	void addPlayerArcher(const Archer&);
+	void addPlayerMage(const Mage&);
+	void addPlayerWarrior(const Warrior&);
 	void printallchars();
 	void createchar();
 	void quickmatch();

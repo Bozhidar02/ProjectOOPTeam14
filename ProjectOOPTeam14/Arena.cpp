@@ -2,59 +2,64 @@
 
 Arena::Arena(){
 	capacity = 4;
-	size = -1;
+	size = 0;
 	chars = new Player * [capacity];
 	player = new Player* [1];
 	MyString::String name = "Archer" , password = "archer";
 	Archer archer(name, password, 50, 100, 100, 1, 0, 900);
 	this->addPlayerArcher(archer);
+
 	Bow bow("Bow");
 	Breastplate bp("Breatsplate");
 	Boots boot("Boots");
-	chars[0]->GetInventory().AddItem(&bow);
-	chars[0]->GetInventory().AddItem(&bp);
-	chars[0]->GetInventory().AddItem(&boot);
+	chars[0]->GetInventory()->AddItem(&bow);
+	chars[0]->GetInventory()->AddItem(&bp);
+	chars[0]->GetInventory()->AddItem(&boot);
+
 	name = "Mage", password = "archer";
 	Mage mage(name, password, 25, 300, 1, 0, 900);
 	this->addPlayerMage(mage);
 	Staff staff("staff");
-	chars[1]->GetInventory().AddItem(&staff);
-	chars[1]->GetInventory().AddItem(&boot);
+	chars[1]->GetInventory()->AddItem(&staff);
+	chars[1]->GetInventory()->AddItem(&boot);
+
 	name = "Warrior", password = "warrior";
 	Warrior warrior(name, password, 100, 1, 0, 100, 900);
 	this->addPlayerWarrior(warrior);
 	//Add sword and heavy armour
 	Sword sword("sword");
 	Helmet helmet("helmet");
-	chars[2]->GetInventory().AddItem(&sword);
-	chars[2]->GetInventory().AddItem(&helmet);
-	chars[2]->GetInventory().AddItem(&bp);
-	chars[2]->GetInventory().AddItem(&boot);
+	chars[2]->GetInventory()->AddItem(&sword);
+	chars[2]->GetInventory()->AddItem(&helmet);
+	chars[2]->GetInventory()->AddItem(&bp);
+	chars[2]->GetInventory()->AddItem(&boot);
 }
 
 Arena::~Arena() {
 	free();
 }
 
-void Arena::addPlayerArcher(Archer newchar){
+void Arena::addPlayerArcher(const Archer& newchar){
+
 	if (size+1 > capacity) {
 		resize();
 	}
-	chars[this->size++] = newchar.clone();
+
+	chars[size++] = newchar.clone();
 }
 
-void Arena::addPlayerMage(Mage newchar) {
+void Arena::addPlayerMage(const Mage& newchar) {
 	if (size + 1 > capacity) {
 		resize();
 	}
-	chars[this->size++] = newchar.clone();
+	chars[size++] = newchar.clone();
 }
 
-void Arena::addPlayerWarrior(Warrior newchar) {
+void Arena::addPlayerWarrior(const Warrior& newchar) {
 	if (size + 1 > capacity) {
 		resize();
 	}
-	chars[this->size++] = newchar.clone();
+	chars[size++] = newchar.clone();
 }
 
 void Arena::printallchars(){
@@ -96,30 +101,30 @@ void Arena::createchar(){
 		Helmet helmet("helmet");
 		Breastplate bp("breastplate");
 		Boots boot("boots");
-		warrior.GetInventory().AddItem(&sword);
-		warrior.GetInventory().AddItem(&helmet);
-		warrior.GetInventory().AddItem(&bp);
-		warrior.GetInventory().AddItem(&boot);
+		warrior.GetInventory()->AddItem(&sword);
+		warrior.GetInventory()->AddItem(&helmet);
+		warrior.GetInventory()->AddItem(&bp);
+		warrior.GetInventory()->AddItem(&boot);
 		this->addPlayerWarrior(warrior);
 	}
 	else if (pick == 2) {
 		Mage mage(name, password);
 		Staff staff("staff");
 		Boots boot("boots");
-		mage.GetInventory().AddItem(&staff);
-		mage.GetInventory().AddItem(&boot);
+		mage.GetInventory()->AddItem(&staff);
+		mage.GetInventory()->AddItem(&boot);
 		this->addPlayerMage(mage);
-		chars[size]->GetInventory().AddItem(&staff);
-		chars[size]->GetInventory().AddItem(&boot);
+		chars[size]->GetInventory()->AddItem(&staff);
+		chars[size]->GetInventory()->AddItem(&boot);
 	}
 	else if (pick == 3) {
 		Archer archer(name, password);
 		Bow bow("bow");
 		Breastplate bp("breastplate");
 		Boots boot("boots");
-		archer.GetInventory().AddItem(&bow);
-		archer.GetInventory().AddItem(&bp);
-		archer.GetInventory().AddItem(&boot);
+		archer.GetInventory()->AddItem(&bow);
+		archer.GetInventory()->AddItem(&bp);
+		archer.GetInventory()->AddItem(&boot);
 		this->addPlayerArcher(archer);
 	}
 }
@@ -146,7 +151,7 @@ void Arena::quickmatch(){
 		std::cout << "No such command. Enter another index of existing character" << std::endl;
 		std::cin >>selection;
 	}
-	player[0]->GetInventory().display();
+	player[0]->GetInventory()->display();
 	std::cout << "Select a weapon to equip" << std::endl;
 	MyString::String weapon = getStringfrominput();
 	player[0]->PickWeapon(weapon);

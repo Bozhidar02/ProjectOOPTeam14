@@ -7,13 +7,22 @@ void Player::copy(const Player& other)
 	xp = other.xp;
 	max_xp = other.max_xp;
 	health = other.health;
-	weapon = dynamic_cast<Weapon*>(other.weapon->clone());
-	armor = new Armor * [ARMOR_SLOTS];
-	for (int i = 0; i < ARMOR_SLOTS; i++)
-	{
-		armor[i] = dynamic_cast<Armor*>(other.armor[i]->clone());
+	weapon = nullptr;
+
+	if (other.weapon != nullptr) {
+		weapon = dynamic_cast<Weapon*>(other.weapon->clone());
 	}
+
+	armor = new Armor * [ARMOR_SLOTS] {nullptr};
+
+	for (int i = 0; i < ARMOR_SLOTS; i++) {
+		if (other.armor[i] != nullptr) {
+			armor[i] = dynamic_cast<Armor*>(other.armor[i]->clone());
+		}
+	}
+
 	inventory = other.inventory;
+
 }
 
 void Player::free()
@@ -38,7 +47,8 @@ Player::Player(MyString::String& username, MyString::String& password, double he
 	level = 1;
 
 	weapon = nullptr;
-	armor = new Armor * [ARMOR_SLOTS];
+	armor = new Armor * [ARMOR_SLOTS] {nullptr};
+	inventory = new Inventory();
 }
 
 Player::Player(MyString::String& username, MyString::String& password, 
@@ -54,7 +64,8 @@ Player::Player(MyString::String& username, MyString::String& password,
 	this->level = level;
 
 	weapon = nullptr;
-	armor = new Armor * [ARMOR_SLOTS];
+	armor = new Armor * [ARMOR_SLOTS] {nullptr};
+	inventory = new Inventory();
 }
 
 Player::Player(const Player& other)
@@ -114,7 +125,7 @@ double Player::GetDefence() const
 	return defence;
 }
 
-Inventory Player::GetInventory()
+Inventory* Player::GetInventory()
 {
 	return inventory;
 }
@@ -131,7 +142,7 @@ const char* Player::getType(){
 
 bool Player::PickWeapon(const MyString::String& weaponName)
 {
-	Item* temp = inventory.FindItem(weaponName);
+	Item* temp = inventory->FindItem(weaponName);
 	if (temp == nullptr)
 	{
 		return false;
@@ -152,7 +163,7 @@ bool Player::SetArmorSlot(const MyString::String& armorName, const int slot)
 		return false;
 	}
 
-	Item* temp = inventory.FindItem(armorName);
+	Item* temp = inventory->FindItem(armorName);
 	if (temp == nullptr)
 	{
 		return false;
@@ -178,24 +189,24 @@ void Player::Attack(Player& other)
 		{
 			std::cout << "Level up!\n";
 		}
-		Item* loot = other.inventory.DropRandom();
+		Item* loot = other.inventory->DropRandom();
 		if (loot == nullptr)
 		{
 			std::cout << "Enemy had nothing valuable.\n";
 			return;
 		}
 		std::cout << this->username << " got " << loot->getName() << '\n';
-		this->inventory.AddItem(loot);
+		this->inventory->AddItem(loot);
 	}
 	else if(this->GetHealth() + this->GetDefence() >= other.GetPower())
 	{
 		std::cout << "You were defeated by" << other.GetName() << "using" << other.weapon->getName() << '\n';
 		other.AddXP(level * 2);
-		Item* loot = inventory.DropRandom();
+		Item* loot = inventory->DropRandom();
 		if (loot != nullptr)
 		{
 			std::cout <<"You lost " << loot->getName() << '\n';
-			other.inventory.AddItem(loot);
+			other.inventory->AddItem(loot);
 		}
 	}
 }
