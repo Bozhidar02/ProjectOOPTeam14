@@ -57,9 +57,6 @@
     <ClCompile Include="Archer.cpp">
       <Filter>Source Files\PlayerClasses</Filter>
     </ClCompile>
-    <ClCompile Include="Mage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files\Areana</Filter>
     </ClCompile>
