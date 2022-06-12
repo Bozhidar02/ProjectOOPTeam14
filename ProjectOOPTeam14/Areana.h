@@ -6,6 +6,12 @@
 #include "Warrior.h"
 #include "Archer.h"
 #include "Inventory.h"
+#include "Bow.h"
+#include "Sword.h"
+#include "Staff.h"
+#include "Helmet.h"
+#include "Breastplate.h"
+#include "Boots.h"
 //the areana is where the gameplay happens
 
 class Areana {
@@ -19,9 +25,9 @@ public:
 	void addPlayerArcher(Archer newchar);
 	void addPlayerMage(Mage newchar);
 	void addPlayerWarrior(Warrior newchar);
-	bool fight(Player* player, Player& opponent);
 	void printallchars();
 	void createchar();
+	Weapon* pickweapon();
 	void quickmatch();
 private:
 	void free();

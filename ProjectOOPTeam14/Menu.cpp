@@ -14,7 +14,7 @@ void tutorial(){
 	std::cout << "There are 3 charachter classes: - warrior, archer and mage." << std::endl;
 	std::cout << "There are 2 types of equipment: - weapons and armor." << std::endl;
 	std::cout << "There are 3 weapon types: - sword, bow and staff." <<std::endl;
-	std::cout << "There are 3 types of armor pices: tbd" << std::endl;
+	std::cout << "There are 3 types of armor pices: helmet, brestplate, boots" << std::endl;
 	std::cout << "Every piece of equipment has durability that is decresed with each use when the durability reaches zero the item is no longer usable" << std::endl;
 	std::cout << "The player has an inventory where all items are stored " << std::endl;
 	std::cout << "Combat begins when the player has chosen his character" << std::endl;

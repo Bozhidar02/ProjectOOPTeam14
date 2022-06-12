@@ -46,6 +46,7 @@ public:
 	double GetHealth() const;
 	double GetDefence() const;
 	Inventory GetInventory();
+	const char* getType();
 
 	virtual bool AddXP(const unsigned int xp) = 0;
 

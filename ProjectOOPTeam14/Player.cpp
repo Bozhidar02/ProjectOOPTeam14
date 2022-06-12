@@ -119,6 +119,16 @@ Inventory Player::GetInventory()
 	return inventory;
 }
 
+const char* Player::getType(){		
+	switch (type)
+	{
+	case WARRIOR:   return "WARRIOR";
+	case ARCHER:   return "ARCHER";
+	case MAGE: return "MAGE";
+	default:      return "UNKNOWN";
+	}
+}
+
 bool Player::PickWeapon(const MyString::String& weaponName)
 {
 	Item* temp = inventory.FindItem(weaponName);
