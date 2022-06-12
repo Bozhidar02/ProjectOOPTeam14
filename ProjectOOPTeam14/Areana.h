@@ -6,6 +6,7 @@
 #include "Warrior.h"
 #include "Archer.h"
 #include "Inventory.h"
+//the areana is where the gameplay happens
 
 class Areana {
 	Player** chars;
