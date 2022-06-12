@@ -60,7 +60,7 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files\Areana</Filter>
     </ClCompile>
-    <ClCompile Include="Areana.cpp">
+    <ClCompile Include="Arena.cpp">
       <Filter>Source Files\Areana</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
@@ -128,7 +128,7 @@
     <ClInclude Include="Menu.h">
       <Filter>Header Files\Areana</Filter>
     </ClInclude>
-    <ClInclude Include="Areana.h">
+    <ClInclude Include="Arena.h">
       <Filter>Header Files\Areana</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">

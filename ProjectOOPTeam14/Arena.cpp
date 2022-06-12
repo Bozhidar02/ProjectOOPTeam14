@@ -1,6 +1,6 @@
-#include "Areana.h"
+#include "Arena.h"
 
-Areana::Areana(){
+Arena::Arena(){
 	capacity = 4;
 	size = -1;
 	chars = new Player * [capacity];
@@ -14,7 +14,6 @@ Areana::Areana(){
 	chars[0]->GetInventory().AddItem(&bow);
 	chars[0]->GetInventory().AddItem(&bp);
 	chars[0]->GetInventory().AddItem(&boot);
-	//Finish up here. Add bow for archer, medium armour 
 	name = "Mage", password = "archer";
 	Mage mage(name, password, 25, 300, 1, 0, 900);
 	this->addPlayerMage(mage);
@@ -33,32 +32,32 @@ Areana::Areana(){
 	chars[2]->GetInventory().AddItem(&boot);
 }
 
-Areana::~Areana() {
+Arena::~Arena() {
 	free();
 }
 
-void Areana::addPlayerArcher(Archer newchar){
+void Arena::addPlayerArcher(Archer newchar){
 	if (size+1 > capacity) {
 		resize();
 	}
 	chars[this->size++] = newchar.clone();
 }
 
-void Areana::addPlayerMage(Mage newchar) {
+void Arena::addPlayerMage(Mage newchar) {
 	if (size + 1 > capacity) {
 		resize();
 	}
 	chars[this->size++] = newchar.clone();
 }
 
-void Areana::addPlayerWarrior(Warrior newchar) {
+void Arena::addPlayerWarrior(Warrior newchar) {
 	if (size + 1 > capacity) {
 		resize();
 	}
 	chars[this->size++] = newchar.clone();
 }
 
-void Areana::printallchars(){
+void Arena::printallchars(){
 	for (int i = 0; i < size; i++) {//add password
 		std::cout << i << ". Name: " << chars[i]->GetName() << " level:" << chars[i]->GetLevel() << " Power:" << chars[i]->GetPower() << std::endl;
 	}
@@ -77,7 +76,7 @@ MyString::String getStringfrominput() {
 	return was;
 }
 
-void Areana::createchar(){
+void Arena::createchar(){
 	std::cout << "Pick a class:" << std::endl;
 	std::cout << "1>Warrior, 2>Mage, 3>Archer"<<std::endl;
 	size_t pick;
@@ -126,7 +125,7 @@ void Areana::createchar(){
 }
 
 
-void Areana::quickmatch(){
+void Arena::quickmatch(){
 	printallchars();
 	std::cout << "Choose a character or create a new one. To create new character select -1."<<std::endl;
 	size_t selection;
@@ -189,14 +188,14 @@ void Areana::quickmatch(){
 	}
 }
 
-void Areana::free(){
+void Arena::free(){
 	for (size_t i = 0; i < size; i++) {
 		delete chars;
 	}
 	delete[] chars;
 }
 
-void Areana::resize(){
+void Arena::resize(){
 	Player** newCollection = new Player * [capacity *= 2];
 	for (size_t i = 0; i < size; i++)
 		newCollection[i] = chars[i];

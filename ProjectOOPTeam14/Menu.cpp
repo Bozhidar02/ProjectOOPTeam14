@@ -1,5 +1,5 @@
 #include "Menu.h"
-#include "Areana.h"
+#include "Arena.h"
 
 void menuoptions(){
 	std::cout << "What would you like to do? (press the index button to select)" << std::endl;
@@ -29,8 +29,8 @@ void menu() {
 		menuoptions();
 		std::cin >> option;
 		if (option == 1) {
-			Areana areana;
-			areana.quickmatch();
+			Arena arena;
+			arena.quickmatch();
 		}
 		else if (option == 2) {
 			tutorial();//print instructions of how the game plays

@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Archer.cpp" />
-    <ClCompile Include="Areana.cpp" />
+    <ClCompile Include="Arena.cpp" />
     <ClCompile Include="Armor.cpp" />
     <ClCompile Include="Boots.cpp" />
     <ClCompile Include="Bow.cpp" />
@@ -160,7 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Archer.h" />
-    <ClInclude Include="Areana.h" />
+    <ClInclude Include="Arena.h" />
     <ClInclude Include="Armor.h" />
     <ClInclude Include="Boots.h" />
     <ClInclude Include="Bow.h" />

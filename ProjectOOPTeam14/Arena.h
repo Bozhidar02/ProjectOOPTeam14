@@ -12,22 +12,21 @@
 #include "Helmet.h"
 #include "Breastplate.h"
 #include "Boots.h"
-//the areana is where the gameplay happens
+//the Arena is where the gameplay happens
 
-class Areana {
+class Arena {
 	Player** chars;
 	Player** player;
 	size_t size, capacity;
 
 public:
-	Areana();
-	~Areana();
+	Arena();
+	~Arena();
 	void addPlayerArcher(Archer newchar);
 	void addPlayerMage(Mage newchar);
 	void addPlayerWarrior(Warrior newchar);
 	void printallchars();
 	void createchar();
-	Weapon* pickweapon();
 	void quickmatch();
 private:
 	void free();
