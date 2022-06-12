@@ -66,6 +66,30 @@
     <ClCompile Include="Areana.cpp">
       <Filter>Source Files\Areana</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="Bow.cpp">
+      <Filter>Source Files\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="Staff.cpp">
+      <Filter>Source Files\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>Source Files\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor.cpp">
+      <Filter>Source Files\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="Helmet.cpp">
+      <Filter>Source Files\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="Breastplate.cpp">
+      <Filter>Source Files\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="Boots.cpp">
+      <Filter>Source Files\Equipment</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Armor.h">
@@ -103,6 +127,27 @@
     </ClInclude>
     <ClInclude Include="Areana.h">
       <Filter>Header Files\Areana</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files\Additional</Filter>
+    </ClInclude>
+    <ClInclude Include="Bow.h">
+      <Filter>Header Files\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Staff.h">
+      <Filter>Header Files\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword.h">
+      <Filter>Header Files\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Helmet.h">
+      <Filter>Header Files\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Breastplate.h">
+      <Filter>Header Files\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Boots.h">
+      <Filter>Header Files\Equipment</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

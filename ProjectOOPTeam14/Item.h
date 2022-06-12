@@ -6,9 +6,14 @@ protected:
 	MyString::String name;
 	double maxdurability;// maximum durability item has. -1 means it is unbreakable
 	double durability;
+	int level;
 public:
-	Item(MyString::String name, const double maxdurability = 0, const double durability = 0);
-	Item(const Item& other);
+	Item(MyString::String, const double, const int);
+	Item(const Item&);
 
 	virtual double use() = 0;
+
+	MyString::String getName() const;
+	double getMaxDurability() const;
+	double getDurability() const;
 };

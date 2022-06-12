@@ -29,26 +29,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -141,24 +141,39 @@
   <ItemGroup>
     <ClCompile Include="Archer.cpp" />
     <ClCompile Include="Areana.cpp" />
+    <ClCompile Include="Armor.cpp" />
+    <ClCompile Include="Boots.cpp" />
+    <ClCompile Include="Bow.cpp" />
+    <ClCompile Include="Breastplate.cpp" />
+    <ClCompile Include="Helmet.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Mage.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Staff.cpp" />
     <ClCompile Include="String.cpp" />
+    <ClCompile Include="Sword.cpp" />
     <ClCompile Include="Warrior.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Archer.h" />
     <ClInclude Include="Areana.h" />
     <ClInclude Include="Armor.h" />
+    <ClInclude Include="Boots.h" />
+    <ClInclude Include="Bow.h" />
+    <ClInclude Include="Breastplate.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="Helmet.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Mage.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Staff.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="Sword.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Warrior.h" />
     <ClInclude Include="Weapon.h" />
