@@ -1,7 +1,7 @@
 #include "Warrior.h"
 
 Warrior::Warrior(MyString::String& username, MyString::String& password)
-	: Player(username, password, START_HEALTH)
+	: Player(username, password, WARRIOR_START_HEALTH)
 {
 	type = Type::WARRIOR;
 }
@@ -9,7 +9,7 @@ Warrior::Warrior(MyString::String& username, MyString::String& password)
 Warrior::Warrior(MyString::String& username, MyString::String& password, double health, double strength, unsigned int level, int xp, int max_xp)
 	: Player(username, password, health, level, xp, max_xp)
 {
-	strength = START_STRG;
+	strength = WARRIOR_START_STRG;
 	type = Type::WARRIOR;
 }
 
@@ -40,7 +40,7 @@ bool Warrior::AddXP(const unsigned int xp)
 	{
 		max_xp *= 2;
 		level++;
-		health += HEALTH_INC;
+		health += WARRIOR_HEALTH_INC;
 		return true;
 	}
 	return false;

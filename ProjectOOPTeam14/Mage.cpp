@@ -1,9 +1,9 @@
 #include "Mage.h"
 
 Mage::Mage(MyString::String& username, MyString::String& password)
-	: Player(username, password, START_HEALTH)
+	: Player(username, password, MAGE_START_HEALTH)
 {
-	mana = START_MANA;
+	mana = MAGE_START_MANA;
 
 	type = Type::MAGE;
 }
@@ -44,10 +44,10 @@ bool Mage::AddXP(const unsigned int xp)
 	{
 		max_xp *= 2;
 		level++;
-		health += HEALTH_INC;
-		if (mana < MAX_MANA)
+		health += MAGE_HEALTH_INC;
+		if (mana < MAGE_MAX_MANA)
 		{
-			mana += MANA_INC;
+			mana += MAGE_MANA_INC;
 		}
 		return true;
 	}

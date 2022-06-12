@@ -51,6 +51,7 @@ Inventory& Inventory::operator=(const Inventory& other)
 		free();
 		copy(other);
 	}
+	return *this;
 }
 
 Inventory::~Inventory()

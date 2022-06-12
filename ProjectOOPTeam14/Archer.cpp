@@ -2,10 +2,10 @@
 
 
 Archer::Archer(MyString::String& username, MyString::String& password)
-	: Player(username, password, START_HEALTH)
+	: Player(username, password, ARCHER_START_HEALTH)
 {
-	stamina = START_STAMINA;
-	accuracity = START_ACCURACITY;
+	stamina = ARCHER_START_STAMINA;
+	accuracity = ARCHER_START_ACCURACITY;
 
 	type = Type::ARCHER;
 }
@@ -49,15 +49,15 @@ bool Archer::AddXP(const unsigned int xp)
 	{
 		max_xp *= 2;
 		level++;
-		health += HEALTH_INC;
-		if (stamina < MAX_STAMINA)
+		health += ARCHER_HEALTH_INC;
+		if (stamina < ARCHER_MAX_STAMINA)
 		{
-			stamina += STAMINA_INC;
+			stamina += ARCHER_STAMINA_INC;
 
 		}
-		if (accuracity < MAX_ACC)
+		if (accuracity < ARCHER_MAX_ACC)
 		{
-			accuracity += ACC_INC;
+			accuracity += ARCHER_ACC_INC;
 		}
 		return true;
 	}

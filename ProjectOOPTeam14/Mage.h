@@ -1,11 +1,6 @@
 #pragma once
 #include "Player.h"
-
-const double START_HEALTH = 80;
-const double HEALTH_INC = 5;
-const double START_MANA = 1;
-const double MANA_INC = 0.5;
-const double MAX_MANA = 5;
+#include "Constants.h"
 
 class Mage :
 	public Player
@@ -16,7 +11,7 @@ public:
 	Mage(MyString::String& username, MyString::String& password);
 	Mage(MyString::String& username, MyString::String& password, double health, double mana,
 		unsigned int level, int xp, int max_xp);
-	Mage(const Player& other);
+	Mage(const Mage& other);
 	Mage& operator=(const Mage& other);
 	~Mage();
 

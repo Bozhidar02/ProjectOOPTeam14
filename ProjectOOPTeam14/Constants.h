@@ -26,3 +26,26 @@ const double BREASTPLATE_DURABILITY = 30.;
 const double BOOTS_AP = 5;
 const double BOOTS_MAX_AP = 15;
 const double BOOTS_DURABILITY = 50;
+
+// Archer
+const double ARCHER_START_HEALTH = 70;
+const double ARCHER_HEALTH_INC = 5;
+const double ARCHER_START_STAMINA = 1;
+const double ARCHER_STAMINA_INC = 0.5;
+const double ARCHER_START_ACCURACITY = 1;
+const double ARCHER_ACC_INC = 0.5;
+const double ARCHER_MAX_STAMINA = 10;
+const double ARCHER_MAX_ACC = 10;
+
+// Warrior
+const double WARRIOR_START_HEALTH = 200;
+const double WARRIOR_HEALTH_INC = 15;
+const double WARRIOR_START_STRG = 1;
+const double WARRIOR_STRG_INC = 0.1f;
+
+// Mage
+const double MAGE_START_HEALTH = 80;
+const double MAGE_HEALTH_INC = 5;
+const double MAGE_START_MANA = 1;
+const double MAGE_MANA_INC = 0.5;
+const double MAGE_MAX_MANA = 5;
