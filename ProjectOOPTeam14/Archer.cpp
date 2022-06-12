@@ -25,7 +25,7 @@ Archer::Archer(const Archer& other)
 	this->stamina = other.stamina;
 	this->accuracity = other.accuracity;
 
-	type = Type::ARCHER;
+	type = other.type;
 }
 
 Archer& Archer::operator=(const Archer& other)
@@ -50,8 +50,15 @@ bool Archer::AddXP(const unsigned int xp)
 		max_xp *= 2;
 		level++;
 		health += HEALTH_INC;
-		stamina += STAMINA_INC;
-		accuracity += ACC_INC;
+		if (stamina < MAX_STAMINA)
+		{
+			stamina += STAMINA_INC;
+
+		}
+		if (accuracity < MAX_ACC)
+		{
+			accuracity += ACC_INC;
+		}
 		return true;
 	}
 	return false;
@@ -60,16 +67,20 @@ bool Archer::AddXP(const unsigned int xp)
 double Archer::GetPower() const
 {
 	double power = 1;
+	srand(time(nullptr));
 	if (weapon != nullptr)
 	{
-		for (int i = 0; i < stamina; i+=20)
+		for (int i = 0; i < stamina; i++)
 		{
-			//TODO: Add accuracity logic
-			power += weapon->use();
+			double ap = weapon->use();
+			if (ap > 0)
+			{
+				double acc = (rand() % 10 + accuracity) / 10.0f;
+
+				power += ap * acc;
+			}
 		}
 	}
-
-	// TODO: Add Weapon Type and class logic
 	return power;
 }
 

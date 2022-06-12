@@ -3,10 +3,14 @@
 
 const double START_HEALTH = 70;
 const double HEALTH_INC = 5;
-const double START_STAMINA = 20;
-const double STAMINA_INC = 10;
+
+const double START_STAMINA = 1;
+const double STAMINA_INC = 0.5;
 const double START_ACCURACITY = 1;
-const double ACC_INC = 1;
+const double ACC_INC = 0.5;
+
+const double MAX_STAMINA = 10;
+const double MAX_ACC = 10;
 
 class Archer :
     public Player

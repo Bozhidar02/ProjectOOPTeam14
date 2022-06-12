@@ -1,10 +1,11 @@
 #pragma once
 #include "Player.h"
 
-const double START_HEALTH = 70;
+const double START_HEALTH = 80;
 const double HEALTH_INC = 5;
-const double START_MANA = 20;
-const double MANA_INC = 10;
+const double START_MANA = 1;
+const double MANA_INC = 0.5;
+const double MAX_MANA = 5;
 
 class Mage :
 	public Player

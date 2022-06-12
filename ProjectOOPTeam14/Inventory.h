@@ -5,7 +5,7 @@
 class Inventory
 {
 private:
-	Item** weapons;
+	Item** items;
 	int capacity, size;
 
 	void free();
@@ -23,4 +23,6 @@ public:
 	bool RemoveItem(const int index);
 
 	Item* DropRandom();
+
+	void display() const;
 };

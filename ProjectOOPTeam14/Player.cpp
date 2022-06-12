@@ -104,7 +104,11 @@ double Player::GetDefence() const
 	{
 		if (armor[i] != nullptr)
 		{
-			defence += armor[i]->use();
+			double dp = armor[i]->use();
+			if (dp > 0)
+			{
+				defence += dp;
+			}
 		}
 	}
 	return defence;
@@ -153,20 +157,35 @@ bool Player::SetArmorSlot(const MyString::String& armorName, const int slot)
 	return true;
 }
 
-bool Player::Attack(Player& other)
+void Player::Attack(Player& other)
 {
 	if (other.GetHealth() + other.GetDefence() >= this->GetPower())
 	{
-		this->AddXP(other.GetLevel() * 2);
+		std::cout << "You defeated " << other.GetName() << "using" << this->weapon->getName() << '\n';
+		std::cout << "Rewards:\n";
+		std::cout << "Earned " << other.GetLevel() * 2 << " xp\n";
+		if (this->AddXP(other.GetLevel() * 2))
+		{
+			std::cout << "Level up!\n";
+		}
 		Item* loot = other.inventory.DropRandom();
+		if (loot == nullptr)
+		{
+			std::cout << "Enemy had nothing valuable.\n";
+			return;
+		}
+		std::cout << this->username << " got " << loot->getName() << '\n';
 		this->inventory.AddItem(loot);
-		return true;
 	}
-	else
+	else if(this->GetHealth() + this->GetDefence() >= other.GetPower())
 	{
+		std::cout << "You were defeated by" << other.GetName() << "using" << other.weapon->getName() << '\n';
 		other.AddXP(level * 2);
 		Item* loot = inventory.DropRandom();
-		other.inventory.AddItem(loot);
-		return false;
+		if (loot != nullptr)
+		{
+			std::cout <<"You lost " << loot->getName() << '\n';
+			other.inventory.AddItem(loot);
+		}
 	}
 }

@@ -1,4 +1,6 @@
 #pragma once
+#include <stdlib.h>
+#include <time.h>
 #include "Inventory.h"
 #include "String.h"
 
@@ -52,7 +54,7 @@ public:
 
 	virtual double GetPower() const = 0;
 
-	bool Attack(Player& other);
+	void Attack(Player& other);
 
 	virtual Player* clone() const = 0;
 };

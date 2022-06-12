@@ -5,7 +5,7 @@ Mage::Mage(MyString::String& username, MyString::String& password)
 {
 	mana = START_MANA;
 
-	type = Type::ARCHER;
+	type = Type::MAGE;
 }
 
 Mage::Mage(MyString::String& username, MyString::String& password, double health, double mana,
@@ -21,7 +21,7 @@ Mage::Mage(const Mage& other)
 {
 	this->mana = other.mana;
 
-	type = Type::MAGE;
+	type = other.type;
 }
 
 Mage& Mage::operator=(const Mage& other)
@@ -45,7 +45,10 @@ bool Mage::AddXP(const unsigned int xp)
 		max_xp *= 2;
 		level++;
 		health += HEALTH_INC;
-		mana += MANA_INC;
+		if (mana < MAX_MANA)
+		{
+			mana += MANA_INC;
+		}
 		return true;
 	}
 	return false;
@@ -56,14 +59,15 @@ double Mage::GetPower() const
 	double power = 1;
 	if (weapon != nullptr)
 	{
-		for (int i = 0; i < mana; i += 10)
+		for (int i = 0; i < mana; i += 1)
 		{
-			//TODO: Add accuracity logic
-			power += weapon->use();
+			double ap = weapon->use();
+			if (ap > 0)
+			{
+				power += ap;
+			}
 		}
 	}
-
-	// TODO: Add Weapon Type and class logic
 	return power;
 }
 

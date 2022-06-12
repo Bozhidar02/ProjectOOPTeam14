@@ -6,21 +6,24 @@ Warrior::Warrior(MyString::String& username, MyString::String& password)
 	type = Type::WARRIOR;
 }
 
-Warrior::Warrior(MyString::String& username, MyString::String& password, double health, unsigned int level, int xp, int max_xp)
+Warrior::Warrior(MyString::String& username, MyString::String& password, double health, double strength, unsigned int level, int xp, int max_xp)
 	: Player(username, password, health, level, xp, max_xp)
 {
+	strength = START_STRG;
 	type = Type::WARRIOR;
 }
 
 Warrior::Warrior(const Warrior& other) 
 	: Player(other)
 {
-	type = Type::WARRIOR;
+	strength = other.strength;
+	type = other.type;
 }
 
 Warrior& Warrior::operator=(const Warrior& other)
 {
 	Player::operator=(other);
+	strength = other.strength;
 	type = other.type;
 
 	return *this;
@@ -49,11 +52,14 @@ double Warrior::GetPower() const
 	double power = 1;
 	if (weapon != nullptr)
 	{
-		power += weapon->use();
+		double ap = weapon->use();
+		if (ap > 0)
+		{
+			power += ap;
+		}
 	}
 
-	// TODO: Add Weapon Type and class logic
-	return power;
+	return power * strength;
 }
 
 Player* Warrior::clone() const
