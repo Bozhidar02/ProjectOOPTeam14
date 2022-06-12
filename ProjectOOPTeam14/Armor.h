@@ -10,7 +10,7 @@ public:
 	Armor(MyString::String, double, double);
 	virtual double use() override;
 	virtual bool upgrade() = 0;
-	virtual Armor* clone() = 0;
+	virtual Item* clone() const = 0;
 
 	double getAp() const;
 };

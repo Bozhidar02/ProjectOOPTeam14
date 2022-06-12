@@ -13,7 +13,7 @@ Breastplate::Breastplate(const Breastplate& other) {
 	copy(other);
 }
 
-Armor* Breastplate::clone() {
+Item* Breastplate::clone() const{
 	return new Breastplate(*this);
 }
 

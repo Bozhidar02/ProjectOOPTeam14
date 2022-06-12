@@ -13,7 +13,7 @@ Staff::Staff(const Staff& other) {
 	copy(other);
 }
 
-Weapon* Staff::clone() {
+Item* Staff::clone() const{
 	return new Staff(*this);
 }
 

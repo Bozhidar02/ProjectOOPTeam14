@@ -9,6 +9,6 @@ private:
 public:
 	Boots(MyString::String);
 	Boots(const Boots&);
-	Armor* clone() override;
+	Item* clone() const override;
 	bool upgrade() override;
 };

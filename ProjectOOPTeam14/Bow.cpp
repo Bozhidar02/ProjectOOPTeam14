@@ -13,7 +13,7 @@ Bow::Bow(const Bow& other) {
 	copy(other);
 }
 
-Weapon* Bow::clone() {
+Item* Bow::clone() const{
 	return new Bow(*this);
 }
 

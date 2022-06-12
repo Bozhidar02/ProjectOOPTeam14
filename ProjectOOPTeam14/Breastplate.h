@@ -9,6 +9,6 @@ private:
 public:
 	Breastplate(MyString::String);
 	Breastplate(const Breastplate&);
-	Armor* clone() override;
+	Item* clone() const override;
 	bool upgrade() override;
 };
