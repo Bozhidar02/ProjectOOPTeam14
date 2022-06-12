@@ -13,6 +13,10 @@ Helmet::Helmet(const Helmet& other) {
 	copy(other);
 }
 
+Helmet::~Helmet()
+{
+}
+
 Item* Helmet::clone() const{
 	return new Helmet(*this);
 }

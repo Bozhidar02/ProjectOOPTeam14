@@ -142,17 +142,18 @@ const char* Player::getType(){
 
 bool Player::PickWeapon(const MyString::String& weaponName)
 {
-	Item* temp = inventory->FindItem(weaponName);
-	if (temp == nullptr)
+	if (inventory->checkAvailabale(weaponName)) {
+		Item* temp = inventory->FindItem(weaponName);
+		weapon = dynamic_cast<Weapon*>(temp);
+		if (weapon == nullptr)
+		{
+			return false;
+		}
+	}
+	/*if (temp == nullptr)
 	{
 		return false;
-	}
-	weapon = dynamic_cast<Weapon*>(temp);
-	if (weapon == nullptr)
-	{
-		return false;
-	}
-
+	}*/
 	return true;
 }
 
@@ -160,21 +161,22 @@ bool Player::SetArmorSlot(const MyString::String& armorName, const int slot)
 {
 	if (slot < 0 || slot >= ARMOR_SLOTS)
 	{
+
 		return false;
 	}
+	if (inventory->checkAvailabale(armorName)) {
+		Item* temp = inventory->FindItem(armorName);
+		if (temp == nullptr)
+		{
+			return false;
+		}
 
-	Item* temp = inventory->FindItem(armorName);
-	if (temp == nullptr)
-	{
-		return false;
+		armor[slot] = dynamic_cast<Armor*>(temp);
+		if (armor[slot] == nullptr)
+		{
+			return false;
+		}
 	}
-
-	armor[slot] = dynamic_cast<Armor*>(temp);
-	if (armor[slot] == nullptr)
-	{
-		return false;
-	}
-
 	return true;
 }
 
@@ -182,7 +184,7 @@ void Player::Attack(Player& other)
 {
 	if (other.GetHealth() + other.GetDefence() >= this->GetPower())
 	{
-		std::cout << "You defeated " << other.GetName() << "using" << this->weapon->getName() << '\n';
+		std::cout << "You defeated " << other.GetName() << " using " << this->weapon->getName() << '\n';
 		std::cout << "Rewards:\n";
 		std::cout << "Earned " << other.GetLevel() * 2 << " xp\n";
 		if (this->AddXP(other.GetLevel() * 2))
@@ -207,6 +209,7 @@ void Player::Attack(Player& other)
 		{
 			std::cout <<"You lost " << loot->getName() << '\n';
 			other.inventory->AddItem(loot);
+			delete[] loot;
 		}
 	}
 }

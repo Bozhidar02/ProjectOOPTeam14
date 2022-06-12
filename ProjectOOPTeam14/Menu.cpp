@@ -22,25 +22,30 @@ void tutorial(){
 	std::cout << "When the qiuckmatch is over the player has the option to play again" << std::endl;
 }
 
-void menu() {
+int menu() {
 	size_t option;
 	std::cout << "Welcome to the arean!" << std::endl;
-	while (true) {
+		//std::cout << "Menu start" << std::endl;
 		menuoptions();
 		std::cin >> option;
 		if (option == 1) {
 			Arena arena;
-			arena.quickmatch();
+			try {
+				arena.quickmatch();
+			}
+			catch (...) {
+			}
+			std::cout << "Game over" << std::endl;
+			return 0;
 		}
 		else if (option == 2) {
 			tutorial();//print instructions of how the game plays
 		}
 		else if (option == 3) {
-			return;
+			return 0;
 		}
 		else {
 			std::cout << "Not an available command";
 		}
-
-	}
+		
 }

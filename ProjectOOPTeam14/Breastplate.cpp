@@ -13,6 +13,10 @@ Breastplate::Breastplate(const Breastplate& other) {
 	copy(other);
 }
 
+Breastplate::~Breastplate()
+{
+}
+
 Item* Breastplate::clone() const{
 	return new Breastplate(*this);
 }

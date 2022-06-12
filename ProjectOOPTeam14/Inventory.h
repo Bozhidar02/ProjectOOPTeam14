@@ -18,6 +18,7 @@ public:
 	~Inventory();
 
 	Item* FindItem(const MyString::String& name);
+	bool checkAvailabale(const MyString::String& name);
 
 	bool AddItem(Item* item);
 	bool RemoveItem(const int index);

@@ -14,6 +14,10 @@ Item::Item(const Item& other) {
 	level = other.level;
 }
 
+Item::~Item()
+{
+}
+
 MyString::String Item::getName() const {
 	return name;
 }

@@ -13,6 +13,10 @@ Boots::Boots(const Boots& other) {
 	copy(other);
 }
 
+Boots::~Boots()
+{
+}
+
 Item* Boots::clone() const {
 	return new Boots(*this);
 }

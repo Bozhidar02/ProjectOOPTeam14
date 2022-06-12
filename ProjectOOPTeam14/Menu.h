@@ -6,4 +6,4 @@ void menuoptions();
 
 void tutorial();
 
-void menu();
+int menu();

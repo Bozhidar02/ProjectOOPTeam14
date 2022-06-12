@@ -7,31 +7,25 @@ Arena::Arena(){
 	player = new Player* [1];
 	MyString::String name = "Archer" , password = "archer";
 	Archer archer(name, password, 50, 100, 100, 1, 0, 900);
-	Bow* bow = new Bow("Bow");
-	Breastplate* bp = new Breastplate("Breatsplate");
-	Boots* boot = new Boots("Boots");
-	archer.GetInventory()->AddItem(bow);
-	archer.GetInventory()->AddItem(bp);
-	archer.GetInventory()->AddItem(boot);
+	archer.GetInventory()->AddItem(new Bow("Bow"));
+	archer.GetInventory()->AddItem(new Breastplate("Breatsplate"));
+	archer.GetInventory()->AddItem(new Boots("Boots"));
 	this->addPlayerArcher(archer);
 
 	name = "Mage", password = "archer";
 	Mage mage(name, password, 25, 300, 1, 0, 900);
 	this->addPlayerMage(mage);
-	Staff* staff = new Staff("staff");
-	chars[1]->GetInventory()->AddItem(staff);
-	chars[1]->GetInventory()->AddItem(boot);
+	chars[1]->GetInventory()->AddItem(new Staff("staff"));
+	chars[1]->GetInventory()->AddItem(new Boots("Boots"));
 
 	name = "Warrior", password = "warrior";
 	Warrior warrior(name, password, 100, 1, 0, 100, 900);
 	this->addPlayerWarrior(warrior);
 	//Add sword and heavy armour
-	Sword* sword = new Sword("sword");
-	Helmet* helmet = new Helmet("helmet");
-	chars[2]->GetInventory()->AddItem(sword);
-	chars[2]->GetInventory()->AddItem(helmet);
-	chars[2]->GetInventory()->AddItem(bp);
-	chars[2]->GetInventory()->AddItem(boot);
+	chars[2]->GetInventory()->AddItem(new Sword("sword"));
+	chars[2]->GetInventory()->AddItem(new Helmet("helmet"));
+	chars[2]->GetInventory()->AddItem(new Breastplate("Breatsplate"));
+	chars[2]->GetInventory()->AddItem(new Boots("Boots"));
 }
 
 Arena::~Arena() {
@@ -96,48 +90,37 @@ void Arena::createchar(){
 	password = getStringfrominput();//buffer
 	if (pick == 1) {
 		Warrior warrior(name, password);//make is a full construct?
-		Sword* sword = new Sword("sword");
-		Helmet* helmet = new Helmet("helmet");
-		Breastplate* bp = new Breastplate("breastplate");
-		Boots* boot = new Boots("boots");
-		warrior.GetInventory()->AddItem(sword);
-		warrior.GetInventory()->AddItem(helmet);
-		warrior.GetInventory()->AddItem(bp);
-		warrior.GetInventory()->AddItem(boot);
+		warrior.GetInventory()->AddItem(new Sword("sword"));
+		warrior.GetInventory()->AddItem(new Helmet("helmet"));
+		warrior.GetInventory()->AddItem(new Breastplate("breastplate"));
+		warrior.GetInventory()->AddItem(new Boots("boots"));
 		this->addPlayerWarrior(warrior);
 	}
 	else if (pick == 2) {
 		Mage mage(name, password);
-		Staff* staff = new Staff("staff");
-		Boots* boot = new Boots("boots");
-		mage.GetInventory()->AddItem(staff);
-		mage.GetInventory()->AddItem(boot);
+		mage.GetInventory()->AddItem(new Staff("staff"));
+		mage.GetInventory()->AddItem(new Boots("boots"));
 		this->addPlayerMage(mage);
 	}
 	else if (pick == 3) {
 		Archer archer(name, password);
-		Bow* bow = new Bow("bow");
-		Breastplate* bp = new Breastplate("breastplate");
-		Boots* boot = new Boots("boots");
-		archer.GetInventory()->AddItem(bow);
-		archer.GetInventory()->AddItem(bp);
-		archer.GetInventory()->AddItem(boot);
+		archer.GetInventory()->AddItem(new Bow("bow"));
+		archer.GetInventory()->AddItem(new Breastplate("breastplate"));
+		archer.GetInventory()->AddItem(new Boots("boots"));
 		this->addPlayerArcher(archer);
 	}
+	
 }
 
 
 void Arena::quickmatch(){
-	chars[0]->GetInventory()->display();
 	printallchars();
 	std::cout << "Choose a character or create a new one. To create new character select -1."<<std::endl;
 	int selection;
 	std::cin >> selection;
-	bool selecmade = true;
 	if (selection == -1) {
 		createchar();
 		this->player[0] = chars[size];//create char
-		selecmade = false;
 	}
 	while (selection >= size || selection < 0) {
 		std::cout << "Such a charcracter does not exist";
@@ -148,14 +131,13 @@ void Arena::quickmatch(){
 			this->player[0] = chars[i];
 			//chars[i]->GetInventory()->display();
 			break;
-
 		}
 	}
 
 	player[0]->GetInventory()->display();
 	std::cout << "Select a weapon to equip" << std::endl;
-	MyString::String weapon = getStringfrominput();
-	player[0]->PickWeapon(weapon);
+	//MyString::String weapon = getStringfrominput();
+	player[0]->PickWeapon(getStringfrominput());
 	std::cout << "Would you like to equip armour? y/n" << std::endl;
 	char ans;
 	std::cin >> ans;
@@ -163,8 +145,7 @@ void Arena::quickmatch(){
 		std::cout << "Select armor slot to equip: 0>head, 1>torso, 2>legs" << std::endl;
 		size_t as;
 		std::cin >> as;
-		MyString::String name = getStringfrominput();
-		player[0]->SetArmorSlot(name, as);
+		player[0]->SetArmorSlot(getStringfrominput(), as);
 		std::cout << "Would you like to equip another pice of armor? y/n" << std::endl;
 		std::cin >> ans;
 	}
@@ -186,12 +167,6 @@ void Arena::quickmatch(){
 		chars[opp]->SetArmorSlot("boots", 2);
 	}
 	player[0]->Attack(*chars[opp]);
-	std::cout << "Would you like to fight again? y/n" << std::endl;
-	char agree;
-	std::cin >> agree;
-	if (agree == 'y') {
-		quickmatch();
-	}
 }
 
 void Arena::free(){

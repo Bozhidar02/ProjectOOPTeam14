@@ -9,6 +9,7 @@ private:
 public:
 	Helmet(MyString::String);
 	Helmet(const Helmet&);
+	~Helmet();
 	Item* clone() const override;
 	bool upgrade() override;
 };

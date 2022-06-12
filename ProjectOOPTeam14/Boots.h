@@ -9,6 +9,7 @@ private:
 public:
 	Boots(MyString::String);
 	Boots(const Boots&);
+	~Boots();
 	Item* clone() const override;
 	bool upgrade() override;
 };

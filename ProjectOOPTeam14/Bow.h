@@ -8,6 +8,7 @@ class Bow : public Weapon {
 public:
 	Bow(MyString::String);
 	Bow(const Bow&);
+	~Bow();
 	Item* clone() const override;
 	bool upgrade() override;
 };

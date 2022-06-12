@@ -29,7 +29,6 @@ void Inventory::resize()
 	}
 	delete[] items;
 	items = temp;
-	temp = nullptr;
 }
 
 Inventory::Inventory()
@@ -57,6 +56,17 @@ Inventory& Inventory::operator=(const Inventory& other)
 Inventory::~Inventory()
 {
 	free();
+}
+
+bool Inventory::checkAvailabale(const MyString::String& name) {
+	for (int i = 0; i < capacity; i++)
+	{
+		if (items[i]->getName() == name)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 Item* Inventory::FindItem(const MyString::String& name)
