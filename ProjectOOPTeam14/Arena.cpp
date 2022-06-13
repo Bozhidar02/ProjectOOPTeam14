@@ -169,6 +169,8 @@ void Arena::free(){
 		delete chars[i];
 	}
 	delete[] chars;
+	delete player[0];
+	delete[] player;
 }
 
 void Arena::resize(){
