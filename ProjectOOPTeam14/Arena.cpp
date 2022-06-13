@@ -1,32 +1,33 @@
 #include "Arena.h"
 
 Arena::Arena(){
+	srand((unsigned int)time(NULL));
 	first = true;
 	capacity = 4;
 	size = 0;
 	chars = new Player * [capacity];
 	player = new Player* [1];
 	MyString::String name = "Archer" , password = "archer";
-	Archer archer(name, password, 50, 100, 100, 1, 0, 900);
-	archer.GetInventory()->AddItem(new Bow("Bow"));
-	archer.GetInventory()->AddItem(new Breastplate("Breatsplate"));
-	archer.GetInventory()->AddItem(new Boots("Boots"));
+	Archer archer(name, password, 50, 1, 100, 1, 1, 900);
+	archer.GetInventory()->AddItem(new Bow("bow"));
+	archer.GetInventory()->AddItem(new Breastplate("breastplate"));
+	archer.GetInventory()->AddItem(new Boots("boots"));
 	this->addPlayerArcher(archer);
 
 	name = "Mage", password = "archer";
-	Mage mage(name, password, 25, 300, 1, 0, 900);
+	Mage mage(name, password, 25, 1, 1, 1, 900);
 	this->addPlayerMage(mage);
 	chars[1]->GetInventory()->AddItem(new Staff("staff"));
-	chars[1]->GetInventory()->AddItem(new Boots("Boots"));
+	chars[1]->GetInventory()->AddItem(new Boots("boots"));
 
 	name = "Warrior", password = "warrior";
-	Warrior warrior(name, password, 100, 1, 0, 100, 900);
+	Warrior warrior(name, password, 100, 1, 1, 100, 900);
 	this->addPlayerWarrior(warrior);
 	//Add sword and heavy armour
 	chars[2]->GetInventory()->AddItem(new Sword("sword"));
 	chars[2]->GetInventory()->AddItem(new Helmet("helmet"));
-	chars[2]->GetInventory()->AddItem(new Breastplate("Breatsplate"));
-	chars[2]->GetInventory()->AddItem(new Boots("Boots"));
+	chars[2]->GetInventory()->AddItem(new Breastplate("breastplate"));
+	chars[2]->GetInventory()->AddItem(new Boots("boots"));
 }
 
 Arena::~Arena() {
@@ -78,12 +79,12 @@ MyString::String getStringfrominput() {
 
 void Arena::createchar(){
 	MyString::String name, password;
-	std::cout << "Enter username" << std::endl;
+	std::cout << "Enter username:" << std::endl;
 	name = getStringfrominput();//buffer
-	std::cout << "Enter password for character" << std::endl;
+	std::cout << "Enter password for character:" << std::endl;
 	password = getStringfrominput();//buffer
 	std::cout << "Pick a class:" << std::endl;
-	std::cout << "1>Warrior, 2>Mage, 3>Archer"<<std::endl;
+	std::cout << "1> Warrior, 2> Mage, 3> Archer"<<std::endl;
 	size_t pick;
 	std::cin >> pick;
 	while (pick > 3) {
@@ -115,46 +116,50 @@ void Arena::createchar(){
 
 
 void Arena::quickmatch() {
-	std::cout << "Register " << std::endl;
 	if (this->first) {
+		std::cout << "Registration " << std::endl;
 		createchar();
 		first = false;
 	}
 	std::cout << "Inventory: " << std::endl;
 	this->player[0]->GetInventory()->display();
-	std::cout << "Select a weapon to equip" << std::endl;
+	std::cout << "Select a weapon to equip (u to go unarmed):" << std::endl;
 	//MyString::String weapon = getStringfrominput();
 	player[0]->PickWeapon(getStringfrominput());
 	std::cout << "Would you like to equip armour? y/n" << std::endl;
 	char ans;
 	std::cin >> ans;
 	while (ans == 'y') {
-		std::cout << "Select armor slot to equip: 0>head, 1>torso, 2>legs" << std::endl;
+		std::cout << "Select armor slot to equip: 0> head, 1> torso, 2> legs" << std::endl;
 		size_t as;
 		std::cin >> as;
-		std::cout << "Select item form inventory" << std::endl;
+		std::cout << "Inventory: " << std::endl;
+		this->player[0]->GetInventory()->display();
+		std::cout << "Select item form inventory:" << std::endl;
 		player[0]->SetArmorSlot(getStringfrominput(), as);
 		std::cout << "Would you like to equip another pice of armor? y/n" << std::endl;
 		std::cin >> ans;
 	}
-	int opp = rand() % size;
+	int opp = rand() % (size - 1);
 	MyString::String cool = chars[opp]->getType();
 	if (cool == "WARRIOR") {
 		chars[opp]->PickWeapon("sword");
 		chars[opp]->SetArmorSlot("helmet", 0);
-		chars[opp]->SetArmorSlot("brestplate", 1);
+		chars[opp]->SetArmorSlot("breastplate", 1);
 		chars[opp]->SetArmorSlot("boots", 2);
 	}
 	else if (cool == "ARCHER") {
 		chars[opp]->PickWeapon("bow");
-		chars[opp]->SetArmorSlot("brestplate", 1);
+		chars[opp]->SetArmorSlot("breastplate", 1);
 		chars[opp]->SetArmorSlot("boots", 2);
 	}
 	else if (cool == "MAGE") {
 		chars[opp]->PickWeapon("staff");
 		chars[opp]->SetArmorSlot("boots", 2);
 	}
+	std::cout << "\nResult: \n";
 	player[0]->Attack(chars[opp]);
+	std::cout << '\n';
 }
 
 void Arena::free(){

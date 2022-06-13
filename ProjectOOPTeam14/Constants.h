@@ -2,8 +2,8 @@
 
 // Weapons
 // -> Sword
-const double SWORD_DAMAGE = 15.;
-const double SWORD_MAX_DAMAGE = 45.;
+const double SWORD_DAMAGE = 100.;
+const double SWORD_MAX_DAMAGE = 145.;
 const double SWORD_DURABILITY = 50.;
 // -> Bow
 const double BOW_DAMAGE = 5.;

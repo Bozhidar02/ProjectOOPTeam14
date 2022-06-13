@@ -4,6 +4,7 @@
 Archer::Archer(MyString::String& username, MyString::String& password)
 	: Player(username, password, ARCHER_START_HEALTH)
 {
+	srand((unsigned int)time(nullptr));
 	stamina = ARCHER_START_STAMINA;
 	accuracity = ARCHER_START_ACCURACITY;
 
@@ -14,6 +15,7 @@ Archer::Archer(MyString::String& username, MyString::String& password, double he
 	unsigned int level, int xp, int max_xp)
 	: Player(username, password, health, level, xp, max_xp)
 {
+	srand((unsigned int)time(nullptr));
 	this->stamina = stamina;
 	this->accuracity = accuracity;
 	type = Type::ARCHER;
@@ -22,6 +24,7 @@ Archer::Archer(MyString::String& username, MyString::String& password, double he
 Archer::Archer(const Archer& other)
 	: Player(other)
 {
+	srand((unsigned int)time(nullptr));
 	this->stamina = other.stamina;
 	this->accuracity = other.accuracity;
 
@@ -67,7 +70,6 @@ bool Archer::AddXP(const unsigned int xp)
 double Archer::GetPower() const
 {
 	double power = 1;
-	srand(time(nullptr));
 	if (weapon != nullptr)
 	{
 		for (int i = 0; i < stamina; i++)

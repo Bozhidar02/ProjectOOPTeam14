@@ -3,6 +3,7 @@
 Warrior::Warrior(MyString::String& username, MyString::String& password)
 	: Player(username, password, WARRIOR_START_HEALTH)
 {
+	strength = WARRIOR_START_STRG;
 	type = Type::WARRIOR;
 }
 

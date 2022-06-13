@@ -33,6 +33,7 @@ void Inventory::resize()
 
 Inventory::Inventory()
 {
+	srand((unsigned int)time(nullptr));
 	size = 5;
 	items = new Item * [size];
 	capacity = 0;
@@ -40,6 +41,7 @@ Inventory::Inventory()
 
 Inventory::Inventory(const Inventory& other)
 {
+	srand((unsigned int)time(nullptr));
 	copy(other);
 }
 
@@ -78,6 +80,7 @@ Item* Inventory::FindItem(const MyString::String& name)
 			return items[i];
 		}
 	}
+	return nullptr;
 }
 
 bool Inventory::AddItem(Item* item)
@@ -111,9 +114,13 @@ bool Inventory::RemoveItem(const int index)
 
 Item* Inventory::DropRandom()
 {
-	srand(time(nullptr));
-
-	int ind = rand() % (capacity - 1);
+	int temp = capacity - 1;
+	int ind = 0;
+	if (temp != 0)
+	{
+		ind = rand() % temp;
+	}
+	
 	if (ind < 0 || ind >= capacity)
 	{
 		return nullptr;

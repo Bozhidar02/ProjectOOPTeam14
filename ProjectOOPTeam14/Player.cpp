@@ -4,6 +4,7 @@ void Player::copy(const Player& other)
 {
 	username = other.username;
 	password = other.password;
+	level = other.level;
 	xp = other.xp;
 	max_xp = other.max_xp;
 	health = other.health;
@@ -142,17 +143,19 @@ const char* Player::getType(){
 
 bool Player::PickWeapon(const MyString::String& weaponName)
 {
-	if (inventory->checkAvailabale(weaponName)) {
-		Item* temp = inventory->FindItem(weaponName);
-		weapon = dynamic_cast<Weapon*>(temp);
-		if (weapon == nullptr)
-		{
-			return false;
-		}
+	Item* temp = inventory->FindItem(weaponName);
+	if (temp == nullptr)
+	{
+		weapon = nullptr;
+		return false;
 	}
-	/*if (temp == nullptr)
+	weapon = dynamic_cast<Weapon*>(temp);
+	if (weapon == nullptr)
 	{
 		return false;
+	}
+	/*if (inventory->checkAvailabale(weaponName)) {
+		
 	}*/
 	return true;
 }
@@ -161,23 +164,25 @@ bool Player::SetArmorSlot(const MyString::String& armorName, const int slot)
 {
 	if (slot < 0 || slot >= ARMOR_SLOTS)
 	{
-
 		return false;
 	}
-	if (inventory->checkAvailabale(armorName)) {
-		Item* temp = inventory->FindItem(armorName);
-		if (temp == nullptr)
-		{
-			return false;
-		}
-
-		armor[slot] = dynamic_cast<Armor*>(temp);
-		if (armor[slot] == nullptr)
-		{
-			return false;
-		}
+	
+	Item* temp = inventory->FindItem(armorName);
+	if (temp == nullptr)
+	{
+		armor[slot] = nullptr;
+		return false;
+	}
+	armor[slot] = dynamic_cast<Armor*>(temp);
+	if (armor[slot] == nullptr)
+	{
+		return false;
 	}
 	return true;
+
+	/*if (inventory->checkAvailabale(armorName)) {
+
+	}*/
 }
 
 void Player::droparmor() {
@@ -191,7 +196,16 @@ void Player::Attack(Player* other)
 {
 	if (other->GetHealth() + other->GetDefence() <= this->GetPower())
 	{
-		std::cout << "You defeated " << other->username << " using " << this->weapon->getName() << '\n';
+		std::cout << "You defeated " << other->username;
+		if (weapon != nullptr)
+		{
+			std::cout << " using " << weapon->getName();
+		}
+		else
+		{
+			std::cout << " using your bare hands";
+		}
+		std::cout << '\n';
 		std::cout << "Rewards:\n";
 		std::cout << "Earned " << other->GetLevel() * 2 << " xp\n";
 		if (this->AddXP(other->GetLevel() * 2))
@@ -209,7 +223,16 @@ void Player::Attack(Player* other)
 	}
 	else if(this->GetHealth() + this->GetDefence() > other->GetPower())
 	{
-		std::cout << "You were defeated by " << other->username<< " using " << other->weapon->getName() << '\n';
+		std::cout << "You were defeated by " << other->username;
+		if (other->weapon != nullptr)
+		{
+			std::cout << " using " << other->weapon->getName();
+		}
+		else
+		{
+			std::cout << " using his bare hands";
+		}
+		std::cout << '\n';
 		other->AddXP(level * 2);
 		Item* loot = inventory->DropRandom();
 		if (loot != nullptr)
@@ -217,5 +240,17 @@ void Player::Attack(Player* other)
 			std::cout <<"You lost " << loot->getName() << '\n';
 			other->inventory->AddItem(loot);
 		}
+	}
+	else
+	{
+		std::cout << "You both survived\n";
+	}
+
+	weapon = nullptr;
+	other->weapon = nullptr;
+	for (int i = 0; i < ARMOR_SLOTS; i++)
+	{
+		armor[i] = nullptr;
+		other->armor[i] = nullptr;
 	}
 }
