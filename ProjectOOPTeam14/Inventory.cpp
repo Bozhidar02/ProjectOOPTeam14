@@ -2,7 +2,7 @@
 
 void Inventory::free()
 {
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < capacity; i++)
 	{
 		delete items[i];
 	}
@@ -11,8 +11,9 @@ void Inventory::free()
 
 void Inventory::copy(const Inventory& other)
 {
+	capacity = other.capacity;
+	items = new Item * [capacity];
 	size = other.size;
-	items = new Item * [size];
 	for (int i = 0; i < size; i++)
 	{
 		items[i] = other.items[i]->clone();
@@ -21,9 +22,9 @@ void Inventory::copy(const Inventory& other)
 
 void Inventory::resize()
 {
-	size *= 2;
-	Item** temp = new Item * [size];
-	for (int i = 0; i < capacity; i++)
+	capacity *= 2;
+	Item** temp = new Item * [capacity];
+	for (int i = 0; i < size; i++)
 	{
 		temp[i] = items[i];
 	}
@@ -34,9 +35,9 @@ void Inventory::resize()
 Inventory::Inventory()
 {
 	srand((unsigned int)time(nullptr));
-	size = 5;
-	items = new Item * [size];
-	capacity = 0;
+	capacity = 5;
+	items = new Item * [capacity];
+	size = 0;
 }
 
 Inventory::Inventory(const Inventory& other)
@@ -61,7 +62,7 @@ Inventory::~Inventory()
 }
 
 bool Inventory::checkAvailabale(const MyString::String& name) {
-	for (int i = 0; i < capacity; i++)
+	for (int i = 0; i < size; i++)
 	{
 		if (items[i]->getName() == name)
 		{
@@ -73,7 +74,7 @@ bool Inventory::checkAvailabale(const MyString::String& name) {
 
 Item* Inventory::FindItem(const MyString::String& name)
 {
-	for (int i = 0; i < capacity; i++)
+	for (int i = 0; i < size; i++)
 	{
 		if (items[i]->getName() == name)
 		{
@@ -90,38 +91,38 @@ bool Inventory::AddItem(Item* item)
 		return false;
 	}
 
-	if (capacity >= size)
+	if (size >= capacity)
 	{
 		resize();
 	}
 
-	items[capacity++] = item;
+	items[size++] = item;
 	return true;
 }
 
 bool Inventory::RemoveItem(const int index)
 {
-	if (index < 0 || index > capacity)
+	if (index < 0 || index > size)
 	{
 		return false;
 	}
 	delete items[index];
-	items[index] = items[capacity - 1];
-	items[capacity-1] = nullptr;
-	capacity--;
+	items[index] = items[size - 1];
+	items[size-1] = nullptr;
+	size--;
 	return true;
 }
 
 Item* Inventory::DropRandom()
 {
-	int temp = capacity - 1;
+	int temp = size - 1;
 	int ind = 0;
 	if (temp != 0)
 	{
 		ind = rand() % temp;
 	}
 	
-	if (ind < 0 || ind >= capacity)
+	if (ind < 0 || ind >= size)
 	{
 		return nullptr;
 	}
@@ -133,7 +134,7 @@ Item* Inventory::DropRandom()
 
 void Inventory::display() const
 {
-	for (int i = 0; i < capacity; i++)
+	for (int i = 0; i < size; i++)
 	{
 		std::cout << items[i]->getName() << " durability: " << items[i]->getDurability();
 		if (items[i]->type == Item::Type::WEAPON)

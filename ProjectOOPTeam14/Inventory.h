@@ -6,7 +6,7 @@ class Inventory
 {
 private:
 	Item** items;
-	int capacity, size;
+	int size, capacity;
 
 	void free();
 	void copy(const Inventory& other);
