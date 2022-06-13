@@ -22,8 +22,7 @@ void Player::copy(const Player& other)
 		}
 	}
 
-	inventory = other.inventory;
-
+	inventory = new Inventory(*other.inventory);
 }
 
 void Player::free()
@@ -34,6 +33,8 @@ void Player::free()
 		delete armor[i];
 	}
 	delete[] armor;
+
+	delete inventory;
 }
 
 Player::Player(MyString::String& username, MyString::String& password, double health)
@@ -154,9 +155,6 @@ bool Player::PickWeapon(const MyString::String& weaponName)
 	{
 		return false;
 	}
-	/*if (inventory->checkAvailabale(weaponName)) {
-		
-	}*/
 	return true;
 }
 
@@ -179,10 +177,6 @@ bool Player::SetArmorSlot(const MyString::String& armorName, const int slot)
 		return false;
 	}
 	return true;
-
-	/*if (inventory->checkAvailabale(armorName)) {
-
-	}*/
 }
 
 void Player::droparmor() {
