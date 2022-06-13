@@ -55,7 +55,7 @@ public:
 
 	virtual double GetPower() const = 0;
 
-	void Attack(Player& other);
+	void Attack(Player* other);
 
 	virtual Player* clone() const = 0;
 };

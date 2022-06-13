@@ -166,12 +166,12 @@ void Arena::quickmatch(){
 		chars[opp]->PickWeapon("staff");
 		chars[opp]->SetArmorSlot("boots", 2);
 	}
-	player[0]->Attack(*chars[opp]);
+	player[0]->Attack(chars[opp]);
 }
 
 void Arena::free(){
 	for (size_t i = 0; i < size; i++) {
-		delete chars;
+		delete chars[i];
 	}
 	delete[] chars;
 }
