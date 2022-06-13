@@ -180,6 +180,13 @@ bool Player::SetArmorSlot(const MyString::String& armorName, const int slot)
 	return true;
 }
 
+void Player::droparmor() {
+	for (int i = 0; i< ARMOR_SLOTS; i++){
+		delete armor[i];
+	}
+	delete[] armor;
+}
+
 void Player::Attack(Player* other)
 {
 	if (other->GetHealth() + other->GetDefence() <= this->GetPower())

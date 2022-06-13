@@ -18,6 +18,7 @@ class Arena {
 	Player** chars;
 	Player** player;
 	size_t size, capacity;
+	bool first;
 
 public:
 	Arena();

@@ -52,6 +52,7 @@ public:
 
 	bool PickWeapon(const MyString::String& weaponName);
 	bool SetArmorSlot(const MyString::String& armorName, const int slot);
+	void droparmor();
 
 	virtual double GetPower() const = 0;
 

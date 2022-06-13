@@ -1,6 +1,7 @@
 #include "Arena.h"
 
 Arena::Arena(){
+	first = true;
 	capacity = 4;
 	size = 0;
 	chars = new Player * [capacity];
@@ -113,9 +114,12 @@ void Arena::createchar(){
 }
 
 
-void Arena::quickmatch(){
-	std::cout << "Register "<<std::endl;
-	createchar();
+void Arena::quickmatch() {
+	std::cout << "Register " << std::endl;
+	if (this->first) {
+		createchar();
+		first = false;
+	}
 	std::cout << "Inventory: " << std::endl;
 	this->player[0]->GetInventory()->display();
 	std::cout << "Select a weapon to equip" << std::endl;
