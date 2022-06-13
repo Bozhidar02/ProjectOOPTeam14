@@ -32,11 +32,7 @@ int menu() {
 		menuoptions();
 		std::cin >> option;
 		if (option == 1) {
-			try {
-				arena.quickmatch();
-			}
-			catch (...) {
-			}
+			arena.quickmatch();
 			/*std::cout << "Game over" << std::endl;
 			return 0;*/
 		}

@@ -53,6 +53,7 @@ void Arena::addPlayerWarrior(const Warrior& newchar) {
 		resize();
 	}
 	chars[size++] = newchar.clone();
+	chars[size - 1]->GetInventory()->display();
 }
 
 void Arena::printallchars(){
@@ -75,6 +76,11 @@ MyString::String getStringfrominput() {
 }
 
 void Arena::createchar(){
+	MyString::String name, password;
+	std::cout << "Enter username" << std::endl;
+	name = getStringfrominput();//buffer
+	std::cout << "Enter password for character" << std::endl;
+	password = getStringfrominput();//buffer
 	std::cout << "Pick a class:" << std::endl;
 	std::cout << "1>Warrior, 2>Mage, 3>Archer"<<std::endl;
 	size_t pick;
@@ -83,58 +89,35 @@ void Arena::createchar(){
 		std::cout << "Invalid command:"<<std::endl;
 		std::cin >> pick;
 	}
-	MyString::String name, password;
-	std::cout << "Enter name of char" << std::endl;
-	name = getStringfrominput();//buffer
-	std::cout << "Enter password for character" << std::endl;
-	password = getStringfrominput();//buffer
 	if (pick == 1) {
-		Warrior warrior(name, password);//make is a full construct?
-		warrior.GetInventory()->AddItem(new Sword("sword"));
-		warrior.GetInventory()->AddItem(new Helmet("helmet"));
-		warrior.GetInventory()->AddItem(new Breastplate("breastplate"));
-		warrior.GetInventory()->AddItem(new Boots("boots"));
-		this->addPlayerWarrior(warrior);
+		Warrior* warrior = new Warrior(name, password);//make is a full construct?
+		warrior->GetInventory()->AddItem(new Sword("sword"));
+		warrior->GetInventory()->AddItem(new Helmet("helmet"));
+		warrior->GetInventory()->AddItem(new Breastplate("breastplate"));
+		warrior->GetInventory()->AddItem(new Boots("boots"));
+		this->player[0] = dynamic_cast<Player*>(warrior);
 	}
 	else if (pick == 2) {
-		Mage mage(name, password);
-		mage.GetInventory()->AddItem(new Staff("staff"));
-		mage.GetInventory()->AddItem(new Boots("boots"));
-		this->addPlayerMage(mage);
+		Mage* mage = new Mage(name, password);
+		mage->GetInventory()->AddItem(new Staff("staff"));
+		mage->GetInventory()->AddItem(new Boots("boots"));
+		this->player[0] = dynamic_cast<Player*>(mage);
 	}
 	else if (pick == 3) {
-		Archer archer(name, password);
-		archer.GetInventory()->AddItem(new Bow("bow"));
-		archer.GetInventory()->AddItem(new Breastplate("breastplate"));
-		archer.GetInventory()->AddItem(new Boots("boots"));
-		this->addPlayerArcher(archer);
+		Archer* archer = new Archer(name, password);
+		archer->GetInventory()->AddItem(new Bow("bow"));
+		archer->GetInventory()->AddItem(new Breastplate("breastplate"));
+		archer->GetInventory()->AddItem(new Boots("boots"));
+		this->player[0] = dynamic_cast<Player*>(archer);
 	}
-	
 }
 
 
 void Arena::quickmatch(){
-	printallchars();
-	std::cout << "Choose a character or create a new one. To create new character select -1."<<std::endl;
-	int selection;
-	std::cin >> selection;
-	if (selection == -1) {
-		createchar();
-		this->player[0] = chars[size];//create char
-	}
-	while (selection >= size || selection < 0) {
-		std::cout << "Such a charcracter does not exist";
-		std::cin >> selection;
-	}
-	for (int i = 0; i < size; i++) {
-		if (i == selection) {
-			this->player[0] = chars[i];
-			//chars[i]->GetInventory()->display();
-			break;
-		}
-	}
-
-	player[0]->GetInventory()->display();
+	std::cout << "Register "<<std::endl;
+	createchar();
+	std::cout << "Inventory: " << std::endl;
+	this->player[0]->GetInventory()->display();
 	std::cout << "Select a weapon to equip" << std::endl;
 	//MyString::String weapon = getStringfrominput();
 	player[0]->PickWeapon(getStringfrominput());
@@ -145,6 +128,7 @@ void Arena::quickmatch(){
 		std::cout << "Select armor slot to equip: 0>head, 1>torso, 2>legs" << std::endl;
 		size_t as;
 		std::cin >> as;
+		std::cout << "Select item form inventory" << std::endl;
 		player[0]->SetArmorSlot(getStringfrominput(), as);
 		std::cout << "Would you like to equip another pice of armor? y/n" << std::endl;
 		std::cin >> ans;
