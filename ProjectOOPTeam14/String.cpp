@@ -21,7 +21,7 @@ namespace MyString {
     void String::copy(const String& string)
     {
         size = string.getLength();
-        data = new char[this->size + 1];
+        data = new char[size + 1];
 
         if (data != NULL) {
             strcpy_s(data, size + 1, string.data);
