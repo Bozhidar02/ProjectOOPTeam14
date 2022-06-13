@@ -10,7 +10,7 @@ Warrior::Warrior(MyString::String& username, MyString::String& password)
 Warrior::Warrior(MyString::String& username, MyString::String& password, double health, double strength, unsigned int level, int xp, int max_xp)
 	: Player(username, password, health, level, xp, max_xp)
 {
-	strength = WARRIOR_START_STRG;
+	this->strength = strength;
 	type = Type::WARRIOR;
 }
 
