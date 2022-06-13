@@ -14,9 +14,9 @@ public:
 	Warrior& operator=(const Warrior& other);
 	~Warrior();
 
-	virtual bool AddXP(const unsigned int xp) override;
+	bool AddXP(const unsigned int xp) override;
 
-	virtual double GetPower() const override;
-	virtual Player* clone() const override;
+	double GetPower() const override;
+	Player* clone() const override;
 };
 
