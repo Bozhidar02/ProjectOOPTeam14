@@ -74,6 +74,8 @@ MyString::String getStringfrominput() {
 	char* arr = new char[size+1];
 	strcpy_s(arr, size+1, buffer);
 	MyString::String was(arr);
+	delete[] arr;
+	delete[] buffer;
 	return was;
 }
 
