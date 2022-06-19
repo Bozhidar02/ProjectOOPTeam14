@@ -10,7 +10,7 @@ protected:
 public:
 	Item(MyString::String, const double, const int);
 	Item(const Item&);
-	~Item();
+	virtual ~Item();
 	enum Type
 	{
 		WEAPON,
